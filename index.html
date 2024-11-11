@@ -7,9 +7,10 @@
     <script>
         function checkPassword() {
             var password = document.getElementById("password").value;
-            var correctPassword = "Jhuniyouaremyfavouritepersonandmyprettygirl";
+            var correctPassword = "jhuniyouaremyfavouritepersonandmyprettygirl";
             if (password === correctPassword) {
                 alert("Yey");
+                window.location.href = "success.html"; // Перехід на іншу сторінку
             }
         }
 
