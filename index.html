@@ -12,6 +12,13 @@
                 alert("Yey");
             }
         }
+
+        // Додаємо обробник для вставки тексту
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("password").addEventListener("paste", function() {
+                setTimeout(checkPassword, 0); // Затримка для перевірки після вставки
+            });
+        });
     </script>
 </head>
 <body>
