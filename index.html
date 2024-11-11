@@ -8,6 +8,7 @@
         let hint1Visible = false;
         let hint2Visible = false;
         let hint3Visible = false;
+        let hint4Visible = false;
 
         function toggleHint1() {
             if (!hint1Visible) {
@@ -31,7 +32,15 @@
             if (!hint3Visible) {
                 confirmAndShowHint("3) To assemble the correct message, check each encoded moment. If you're having trouble finding the right letter, try matching it with the captions — all letters must be in place!", () => {
                     hint3Visible = true;
-                    document.getElementById("checkMessage").style.display = "inline-block"; // Show check message button
+                    document.getElementById("hint4").style.display = "inline-block"; // Show next hint button
+                });
+            }
+        }
+
+        function toggleHint4() {
+            if (!hint4Visible) {
+                confirmAndShowHint("4) If you're using this hint, I’m ashamed for you, 1-1 is the first symbol of the first caption.", () => {
+                    hint4Visible = true;
                 });
             }
         }
@@ -73,6 +82,6 @@
     <button id="hint1" onclick="toggleHint1()">Show Hint 1</button>
     <button id="hint2" onclick="toggleHint2()" style="display: none;">Show Hint 2</button>
     <button id="hint3" onclick="toggleHint3()" style="display: none;">Show Hint 3</button>
-    <button id="checkMessage" onclick="checkMessage()" style="display: none;">Check Message</button>
+    <button id="hint4" onclick="toggleHint4()" style="display: none;">Show Hint 4</button>
 </body>
 </html>
