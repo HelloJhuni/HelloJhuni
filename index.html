@@ -5,40 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Password Check</title>
     <script>
-        let hint1Used = false;
-        let hint2Used = false;
+        let hint1Visible = false;
+        let hint2Visible = false;
+        let hint3Visible = false;
 
-        function showHint1() {
-            if (!hint1Used) {
-                alert("1) Carefully watch the video. Missed a letter? No worries, just rewind to the point where you can find the missing symbol.");
-                hint1Used = true;
-                document.getElementById("hint2").style.display = "inline-block"; // Show next hint button
+        function toggleHint1() {
+            if (!hint1Visible) {
+                confirmAndShowHint("1) Carefully watch the video. Missed a letter? No worries, just rewind to the point where you can find the missing symbol.", () => {
+                    hint1Visible = true;
+                    document.getElementById("hint2").style.display = "inline-block"; // Show next hint button
+                });
             }
         }
 
-        function showHint2() {
-            if (!hint2Used) {
-                alert("2) Check the text captions. If you can't find a specific letter, try reviewing all the available captions. Some of them may contain multiple letters that you can use.");
-                hint2Used = true;
-                document.getElementById("hint3").style.display = "inline-block"; // Show next hint button
+        function toggleHint2() {
+            if (!hint2Visible) {
+                confirmAndShowHint("2) Check the text captions. If you can't find a specific letter, try reviewing all the available captions. Some of them may contain multiple letters that you can use.", () => {
+                    hint2Visible = true;
+                    document.getElementById("hint3").style.display = "inline-block"; // Show next hint button
+                });
             }
         }
 
-        function showHint3() {
-            alert("3) To assemble the correct message, check each encoded moment. If you're having trouble finding the right letter, try matching it with the captions — all letters must be in place!");
-            document.getElementById("checkMessage").style.display = "inline-block"; // Show check message button
+        function toggleHint3() {
+            if (!hint3Visible) {
+                confirmAndShowHint("3) To assemble the correct message, check each encoded moment. If you're having trouble finding the right letter, try matching it with the captions — all letters must be in place!", () => {
+                    hint3Visible = true;
+                    document.getElementById("checkMessage").style.display = "inline-block"; // Show check message button
+                });
+            }
         }
 
-        function checkMessage() {
-            let response = prompt("You sure?");
-            if (response && response.toLowerCase() === "yes") {
-                alert("Maybe try again by yourself? It's more interesting...");
+        function confirmAndShowHint(hintText, showCallback) {
+            let firstResponse = prompt("You sure?");
+            if (firstResponse && firstResponse.toLowerCase() === "yes") {
+                let secondResponse = prompt("Maybe try again by yourself? It's more interesting...");
+                if (secondResponse && secondResponse.toLowerCase() === "yes") {
+                    alert(hintText);
+                    showCallback(); // Show hint after confirmation
+                }
             }
         }
 
         function checkPassword() {
             var password = document.getElementById("password").value;
-            var correctPassword = "Jhuniyouaremyfavouritepersonandmyprettygirl";
+            var correctPassword = "jhuniyouaremyfavouritepersonandmyprettygirl";
             if (password === correctPassword) {
                 alert("Yey");
                 window.location.href = "success.html"; // Перехід на іншу сторінку
@@ -59,9 +70,9 @@
     </form>
 
     <!-- Hint Buttons -->
-    <button id="hint1" onclick="showHint1()">Show Hint 1</button>
-    <button id="hint2" onclick="showHint2()" style="display: none;">Show Hint 2</button>
-    <button id="hint3" onclick="showHint3()" style="display: none;">Show Hint 3</button>
+    <button id="hint1" onclick="toggleHint1()">Show Hint 1</button>
+    <button id="hint2" onclick="toggleHint2()" style="display: none;">Show Hint 2</button>
+    <button id="hint3" onclick="toggleHint3()" style="display: none;">Show Hint 3</button>
     <button id="checkMessage" onclick="checkMessage()" style="display: none;">Check Message</button>
 </body>
 </html>
