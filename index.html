@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Привіт</title>
+    <title>Перевірка пароля</title>
+    <script>
+        function checkPassword() {
+            var password = document.getElementById("password").value;
+            var correctPassword = "Jhuniyouaremyfavouritepersonandmyprettygirl";
+            if (password === correctPassword) {
+                alert("Yey");
+                return true;
+            } else {
+                alert("Wrong :(");
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>Привіт</h1>
+    <h2>Введіть пароль</h2>
+    <form onsubmit="return checkPassword()">
+        <label for="password">Password please)</label>
+        <input type="password" id="password" required>
+        <button type="submit">Підтвердити</button>
+    </form>
 </body>
 </html>
