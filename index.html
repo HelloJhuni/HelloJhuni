@@ -1,27 +1,23 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Перевірка пароля</title>
+    <title>Password Check</title>
     <script>
         function checkPassword() {
             var password = document.getElementById("password").value;
             var correctPassword = "Jhuniyouaremyfavouritepersonandmyprettygirl";
             if (password === correctPassword) {
                 alert("Yey");
-                return true;
-            } else {
-                alert("Wrong :(");
-                return false;
             }
         }
     </script>
 </head>
 <body>
     <h2>Password</h2>
-    <form onsubmit="return checkPassword()">
-        <input type="password" id="password" required>
+    <form>
+        <input type="password" id="password" oninput="checkPassword()" required>
     </form>
 </body>
 </html>
